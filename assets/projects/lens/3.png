@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Source artwork for the toolbar and extension-menu PNGs.
+     Regenerate the PNGs with: node scripts/generate_icons.js -->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="800"
+  height="800"
+  viewBox="0 0 800 800"
+  fill="none"
+>
+  <defs>
+    <!-- Background -->
+    <linearGradient id="bg" x1="130" y1="80" x2="680" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFC94A"/>
+      <stop offset="0.48" stop-color="#FF8A2A"/>
+      <stop offset="1" stop-color="#F04432"/>
+    </linearGradient>
+
+    <!-- Camera body -->
+    <linearGradient id="camera" x1="250" y1="270" x2="570" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#385B91"/>
+      <stop offset="1" stop-color="#172F5B"/>
+    </linearGradient>
+
+    <!-- Camera highlight -->
+    <linearGradient id="cameraTop" x1="300" y1="250" x2="500" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6F9DE0"/>
+      <stop offset="1" stop-color="#3D619A"/>
+    </linearGradient>
+
+    <!-- Lens -->
+    <radialGradient id="lens" cx="40%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#50E7F4"/>
+      <stop offset="0.35" stop-color="#159CEB"/>
+      <stop offset="0.7" stop-color="#3157E8"/>
+      <stop offset="1" stop-color="#5424B8"/>
+    </radialGradient>
+
+    <linearGradient id="lensRing" x1="330" y1="300" x2="520" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.5" stop-color="#DDE7F7"/>
+      <stop offset="1" stop-color="#AABBD6"/>
+    </linearGradient>
+
+    <!-- Shadows -->
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="24" stdDeviation="20" flood-opacity="0.25"/>
+    </filter>
+
+    <filter id="smallShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-opacity="0.25"/>
+    </filter>
+
+    <!-- Clip -->
+    <clipPath id="lensClip">
+      <circle cx="400" cy="430" r="112"/>
+    </clipPath>
+  </defs>
+
+  <!-- Round background -->
+  <circle
+    cx="400"
+    cy="400"
+    r="365"
+    fill="url(#bg)"
+    filter="url(#shadow)"
+  />
+
+  <!-- Subtle inner highlight -->
+  <circle
+    cx="400"
+    cy="400"
+    r="335"
+    stroke="#FFD96A"
+    stroke-width="12"
+    opacity="0.55"
+  />
+
+  <!-- Camera -->
+  <g filter="url(#shadow)">
+
+    <!-- Main camera body -->
+    <path
+      d="
+        M190 350
+        C190 318 216 292 248 292
+        H302
+        L331 247
+        C340 233 355 225 372 225
+        H428
+        C445 225 460 233 469 247
+        L498 292
+        H552
+        C584 292 610 318 610 350
+        V540
+        C610 572 584 598 552 598
+        H248
+        C216 598 190 572 190 540
+        Z
+      "
+      fill="url(#camera)"
+    />
+
+    <!-- Top camera ridge -->
+    <path
+      d="
+        M302 292
+        L331 247
+        C340 233 355 225 372 225
+        H428
+        C445 225 460 233 469 247
+        L498 292
+        Z
+      "
+      fill="url(#cameraTop)"
+    />
+
+    <!-- Left grip -->
+    <path
+      d="
+        M190 365
+        C190 330 216 306 248 306
+        H276
+        V560
+        C276 581 259 598 238 598
+        H248
+        C216 598 190 572 190 540
+        Z
+      "
+      fill="#294777"
+    />
+
+    <!-- Top shutter button -->
+    <rect
+      x="244"
+      y="260"
+      width="76"
+      height="28"
+      rx="14"
+      fill="#72A9E9"
+      filter="url(#smallShadow)"
+    />
+
+    <!-- Small indicator -->
+    <circle
+      cx="544"
+      cy="337"
+      r="19"
+      fill="#FFC83D"
+      filter="url(#smallShadow)"
+    />
+
+    <circle
+      cx="539"
+      cy="331"
+      r="6"
+      fill="#FFF2A6"
+      opacity="0.8"
+    />
+
+    <!-- Lens outer ring -->
+    <circle
+      cx="400"
+      cy="430"
+      r="157"
+      fill="#10264A"
+      stroke="#0D2142"
+      stroke-width="5"
+    />
+
+    <!-- Lens silver ring -->
+    <circle
+      cx="400"
+      cy="430"
+      r="139"
+      fill="url(#lensRing)"
+    />
+
+    <!-- Dark lens housing -->
+    <circle
+      cx="400"
+      cy="430"
+      r="119"
+      fill="#14294D"
+    />
+
+    <!-- Glass -->
+    <circle
+      cx="400"
+      cy="430"
+      r="112"
+      fill="url(#lens)"
+    />
+
+    <!-- Lens glass rings -->
+    <circle
+      cx="400"
+      cy="430"
+      r="91"
+      stroke="#72DDF5"
+      stroke-width="12"
+      opacity="0.45"
+    />
+
+    <circle
+      cx="400"
+      cy="430"
+      r="64"
+      fill="#152B88"
+      opacity="0.72"
+    />
+
+    <circle
+      cx="400"
+      cy="430"
+      r="39"
+      fill="#29157C"
+    />
+
+    <circle
+      cx="400"
+      cy="430"
+      r="24"
+      fill="#111D66"
+    />
+
+    <!-- Lens reflections -->
+    <g clip-path="url(#lensClip)">
+      <ellipse
+        cx="355"
+        cy="365"
+        rx="38"
+        ry="20"
+        transform="rotate(-35 355 365)"
+        fill="white"
+        opacity="0.85"
+      />
+
+      <circle
+        cx="454"
+        cy="497"
+        r="15"
+        fill="white"
+        opacity="0.65"
+      />
+
+      <path
+        d="M300 470 C350 510 430 530 505 500"
+        stroke="#A5F5FF"
+        stroke-width="8"
+        opacity="0.2"
+      />
+    </g>
+
+    <!-- Lens outer highlight -->
+    <circle
+      cx="400"
+      cy="430"
+      r="139"
+      stroke="white"
+      stroke-width="5"
+      opacity="0.35"
+    />
+  </g>
+</svg>
