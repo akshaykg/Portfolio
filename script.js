@@ -236,19 +236,78 @@
   // --- Mobile Navigation Menu ---
   const mobileToggle = document.getElementById('mobileToggle');
   const navLinks = document.getElementById('navLinks');
+  const navBackdrop = document.getElementById('navBackdrop');
+
+  function closeMobileNav() {
+    if (navLinks && navLinks.classList.contains('mobile-open')) {
+      navLinks.classList.remove('mobile-open');
+      if (mobileToggle) {
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      }
+      if (navBackdrop) {
+        navBackdrop.classList.remove('active');
+      }
+      document.body.classList.remove('menu-open');
+    }
+  }
+
+  function openMobileNav() {
+    if (navLinks) {
+      navLinks.classList.add('mobile-open');
+      if (mobileToggle) {
+        mobileToggle.setAttribute('aria-expanded', 'true');
+      }
+      if (navBackdrop) {
+        navBackdrop.classList.add('active');
+      }
+      document.body.classList.add('menu-open');
+    }
+  }
 
   if (mobileToggle && navLinks) {
-    mobileToggle.addEventListener('click', function () {
-      const isOpen = navLinks.classList.toggle('mobile-open');
-      mobileToggle.setAttribute('aria-expanded', isOpen);
+    mobileToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const isOpen = navLinks.classList.contains('mobile-open');
+      if (isOpen) {
+        closeMobileNav();
+      } else {
+        openMobileNav();
+      }
     });
 
     // Close mobile nav when clicking a link
     navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        navLinks.classList.remove('mobile-open');
-        mobileToggle.setAttribute('aria-expanded', 'false');
+        closeMobileNav();
       });
+    });
+
+    // Close mobile nav when clicking backdrop
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', function () {
+        closeMobileNav();
+      });
+    }
+
+    // Close on click outside
+    document.addEventListener('click', function (e) {
+      if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
+        closeMobileNav();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeMobileNav();
+      }
+    });
+
+    // Reset when resizing past mobile breakpoint
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) {
+        closeMobileNav();
+      }
     });
   }
 
