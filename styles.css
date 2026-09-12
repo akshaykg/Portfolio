@@ -51,6 +51,18 @@
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  /* Hero portrait card: slower than --transition-smooth so the breakout reads as a move. */
+  --transition-portrait: 680ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-signature: 1.4s cubic-bezier(0.55, 0, 0.3, 1);
+
+  /* Hero portrait card. The plate, bezel and glow all need to flip with the
+     theme - hardcoding them left the card reading as a dark-theme object on a
+     light page. */
+  --portrait-plate: #efe7d9;
+  --portrait-bezel: linear-gradient(145deg, rgba(56, 189, 248, 0.45), rgba(129, 140, 248, 0.14), rgba(255, 255, 255, 0.06));
+  --portrait-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.55), 0 0 40px rgba(56, 189, 248, 0.2);
+  --portrait-ground: rgba(32, 30, 29, 0.12);
+  --portrait-ink: #201e1d;
 }
 
 /* Light Theme Overrides */
@@ -83,6 +95,14 @@
   --accent-glow: 0 0 35px rgba(2, 132, 199, 0.12);
   --card-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
   --modal-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+
+  /* Light blue plate, and a bezel/glow built from the light accents so the card
+     sits on the pale page instead of floating on it. */
+  --portrait-plate: #e0f2fe;
+  --portrait-bezel: linear-gradient(145deg, rgba(2, 132, 199, 0.38), rgba(99, 102, 241, 0.16), rgba(255, 255, 255, 0.55));
+  --portrait-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.22), 0 0 40px rgba(2, 132, 199, 0.14);
+  --portrait-ground: rgba(15, 23, 42, 0.10);
+  --portrait-ink: #0f2337;
 }
 
 /* --- Base & Reset --- */
@@ -390,6 +410,10 @@ section {
   color: var(--text-main);
 }
 
+.brand-accent {
+  color: var(--accent-cyan);
+}
+
 .brand-monogram {
   width: 36px;
   height: 36px;
@@ -408,11 +432,27 @@ section {
 }
 
 .nav-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-muted);
   position: relative;
   padding: 0.3rem 0;
+}
+
+.nav-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  opacity: 0.75;
+  transition: opacity var(--transition-fast);
+}
+
+.nav-links a:hover .nav-icon,
+.nav-links a.active .nav-icon {
+  opacity: 1;
 }
 
 .nav-links a:hover,
@@ -434,6 +474,15 @@ section {
 .nav-links a:hover::after,
 .nav-links a.active::after {
   width: 100%;
+}
+
+@media (min-width: 769px) and (max-width: 1059px) {
+  .nav-icon {
+    display: none;
+  }
+  .nav-links {
+    gap: 1.15rem;
+  }
 }
 
 .nav-actions {
@@ -614,41 +663,151 @@ section {
   justify-content: center;
 }
 
+/*
+ * Three-layer composition: tinted plate, cut-out portrait PNG, handwritten signature.
+ * On hover the portrait zooms, tilts and breaks out past the card frame with a white
+ * silhouette halo, while the signature wipes on left to right.
+ *
+ * Every fixed dimension is multiplied by --portrait-scale so the whole card can shrink
+ * proportionally on narrow screens. The layered positions are percentage-based on the
+ * card box, so it must scale rather than reflow.
+ */
+.portrait-visual {
+  --portrait-scale: 1;
+  /* Breakout room: the portrait grows upward out of the frame on hover. */
+  --portrait-breakout: calc(64px * var(--portrait-scale));
+  --portrait-plate-radius: calc(18px * var(--portrait-scale));
+  position: relative;
+  width: calc(380px * var(--portrait-scale));
+  max-width: 100%;
+  padding-top: var(--portrait-breakout);
+}
+
 .portrait-card {
   position: relative;
-  width: 380px;
-  height: 462px;
-  border-radius: var(--radius-xl);
-  padding: 8px;
-  background: linear-gradient(145deg, rgba(56, 189, 248, 0.4), rgba(129, 140, 248, 0.1), rgba(255, 255, 255, 0.05));
-  box-shadow: var(--card-shadow), var(--accent-glow);
-  transition: transform var(--transition-smooth);
+  width: 100%;
+  height: calc(462px * var(--portrait-scale));
+  padding: calc(8px * var(--portrait-scale));
+  border-radius: calc(24px * var(--portrait-scale));
+  background: var(--portrait-bezel);
+  box-shadow: var(--portrait-shadow);
+  /* Required for the hover breakout. */
+  overflow: visible;
+  animation: cardFloat 7s ease-in-out infinite;
 }
 
-.portrait-card:hover {
-  transform: translateY(-4px);
-}
-
-.portrait-img-wrap {
+.portrait-plate {
+  position: relative;
   width: 100%;
   height: 100%;
-  border-radius: calc(var(--radius-xl) - 6px);
+  border-radius: var(--portrait-plate-radius);
+  background: var(--portrait-plate);
+  overflow: visible;
+}
+
+/* Bottom shading, to ground the figure on the plate. */
+.portrait-plate::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 36%;
+  border-radius: 0 0 var(--portrait-plate-radius) var(--portrait-plate-radius);
+  background: linear-gradient(180deg, transparent 0%, var(--portrait-ground) 100%);
+  pointer-events: none;
+}
+
+.portrait-label {
+  position: absolute;
+  top: calc(16px * var(--portrait-scale));
+  left: calc(18px * var(--portrait-scale));
+  z-index: 4;
+  font-family: var(--font-mono);
+  font-size: calc(10px * var(--portrait-scale));
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--portrait-ink);
+  opacity: 0.62;
+}
+
+/* Crops the resting zoom flush to the plate; opens up at the top and sides on hover,
+   but stays closed at the bottom so the figure never crosses the bottom border. */
+.portrait-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: var(--portrait-plate-radius);
   overflow: hidden;
-  background: var(--bg-surface-elevated);
-  position: relative;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path var(--transition-portrait);
 }
 
 .portrait-img {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  /* Overrides any inherited img clamp, which would otherwise cap the zoom. */
+  max-width: none;
   display: block;
-  transition: transform var(--transition-smooth);
+  transform: translateX(-50%) rotate(0deg) scale(1.12);
+  transform-origin: 50% 100%;
+  filter: url(#featherEdge);
+  transition: transform var(--transition-portrait), filter 680ms ease;
 }
 
-.portrait-card:hover .portrait-img {
-  transform: scale(1.03);
+.portrait-signature {
+  position: absolute;
+  right: calc(10px * var(--portrait-scale));
+  bottom: calc(24px * var(--portrait-scale));
+  z-index: 3;
+  width: 52%;
+  max-width: none;
+  display: block;
+  transform: translateX(0) rotate(-7deg);
+  transform-origin: 100% 100%;
+  /* Keeps the white ink legible over the suit. */
+  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.45));
+  /* Hidden at rest; the mask slides 100% -> 0% to write the signature on. */
+  -webkit-mask-image: linear-gradient(90deg, #000 42%, rgba(0, 0, 0, 0) 58%);
+  -webkit-mask-size: 280% 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: 100% 0;
+  mask-image: linear-gradient(90deg, #000 42%, rgba(0, 0, 0, 0) 58%);
+  mask-size: 280% 100%;
+  mask-repeat: no-repeat;
+  mask-position: 100% 0;
+  transition: mask-position var(--transition-signature),
+    -webkit-mask-position var(--transition-signature),
+    transform var(--transition-portrait);
+}
+
+.portrait-visual:hover .portrait-frame {
+  overflow: visible;
+  clip-path: inset(-18% -18% 0% -18%);
+}
+
+.portrait-visual:hover .portrait-img {
+  transform: translateX(-50%) rotate(-2.5deg) scale(1.2);
+  filter: url(#featherEdgeWide);
+}
+
+.portrait-visual:hover .portrait-signature {
+  transform: translateX(10px) rotate(-7deg);
+  mask-position: 0% 0;
+  -webkit-mask-position: 0% 0;
+}
+
+/* The white halo disappears against the light theme's pale ground, so swap in
+   the ink-flooded filter there. */
+[data-theme="light"] .portrait-visual:hover .portrait-img {
+  filter: url(#featherEdgeWideInk);
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 /* Floating Impact Pills */
@@ -1984,6 +2143,9 @@ section {
   .hero-pill {
     animation: none !important;
   }
+  .portrait-card {
+    animation: none !important;
+  }
 }
 
 /* --- Responsive Breakpoints --- */
@@ -2064,6 +2226,7 @@ section {
   .nav-links a {
     display: flex;
     align-items: center;
+    gap: 0.65rem;
     width: 100%;
     min-height: 46px;
     padding: 0.75rem 1rem;
@@ -2081,6 +2244,10 @@ section {
   }
   .nav-links a::after {
     display: none;
+  }
+  .nav-icon {
+    width: 17px;
+    height: 17px;
   }
 
   /* Grid Layouts */
@@ -2270,9 +2437,9 @@ section {
     width: 100%;
     justify-content: center;
   }
-  .portrait-card {
-    width: min(320px, 88vw);
-    height: min(389px, 107vw);
+  /* Scale the whole card; the layered positions are percentage-based on the card box. */
+  .portrait-visual {
+    --portrait-scale: 0.82;
   }
 
   /* Certifications Grid */
@@ -2387,6 +2554,9 @@ section {
 @media (max-width: 360px) {
   .container {
     padding: 0 0.85rem;
+  }
+  .portrait-visual {
+    --portrait-scale: 0.72;
   }
   .metrics-grid {
     grid-template-columns: 1fr;

@@ -13,3 +13,9 @@ Thumbs.db
 
 # Local IDE/Extension session files
 .openpost/session.json
+
+# Source resume document — a separate downloadable resume is published instead
+Akshay_KG_Anthropic_Resume_Enhanced.html
+
+# Skill tooling virtualenv
+.claude/skills/*/.venv/
