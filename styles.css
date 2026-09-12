@@ -393,14 +393,10 @@ section {
 .brand-monogram {
   width: 36px;
   height: 36px;
-  border-radius: var(--radius-sm);
-  background: var(--accent-gradient);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.95rem;
+  border-radius: var(--radius-full);
+  display: block;
+  object-fit: cover;
+  background: var(--bg-surface-elevated);
   box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
 }
 
