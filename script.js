@@ -594,13 +594,26 @@
         });
       },
       {
-        threshold: 0.12,
+        // A fractional threshold scales with element height: 0.12 of the 668px
+        // hero text block demanded 80px on screen, which is unreachable when the
+        // portrait card pushes it to within 44px of the fold on a phone. Trigger
+        // on any intersection instead so tall blocks are not penalised.
+        threshold: 0,
         rootMargin: '0px 0px -40px 0px'
       }
     );
 
     revealElements.forEach(function (el) {
       revealObserver.observe(el);
+    });
+
+    // Anything already within the first screen must never start blank, whatever
+    // the observer decides - the reveal is a flourish, not a gate on content.
+    revealElements.forEach(function (el) {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('active');
+        revealObserver.unobserve(el);
+      }
     });
   } else {
     revealElements.forEach(function (el) {
