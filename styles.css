@@ -2163,9 +2163,6 @@ section {
     grid-template-columns: 1fr;
     gap: 3rem;
   }
-  .hero-visual {
-    order: -1;
-  }
   .metrics-grid {
     grid-template-columns: repeat(3, 1fr);
   }
