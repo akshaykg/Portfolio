@@ -1745,6 +1745,12 @@ section {
   color: var(--text-subtle);
 }
 
+.footer-copy .footer-privacy {
+  margin-top: 0.4rem;
+  font-size: 0.775rem;
+  opacity: 0.75;
+}
+
 .footer-meta {
   display: flex;
   align-items: center;

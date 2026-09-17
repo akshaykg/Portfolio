@@ -644,3 +644,41 @@
   }, { passive: true });
 
 })();
+
+/* ==========================================================================
+   Resume download tracking
+   --------------------------------------------------------------------------
+   Cloudflare Web Analytics has no custom-event API. What it does have is SPA
+   support (enabled by default): the beacon patches history.pushState and, on
+   every route change, reports the route that was active *before* the change.
+
+   So pushing a synthetic route and immediately pushing back flushes one
+   pageview for that synthetic path — which is our download counter.
+
+   Known side effect: the real page also gets one extra pageview per tracked
+   click. Subtract the "resume-download" count from the page count when
+   reading the dashboard.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  function trackVirtualPageview(name) {
+    if (!window.history || typeof history.pushState !== 'function') return;
+
+    const current = location.pathname + location.search + location.hash;
+    const target = new URL(name, location.href).pathname;
+
+    try {
+      history.pushState({ event: name }, '', target); // flushes the real page
+      history.pushState({}, '', current);             // flushes `name`
+    } catch (err) {
+      // Best-effort only — never let tracking break the download itself.
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a[href$=".pdf"]');
+    if (link) trackVirtualPageview('resume-download');
+  }, true);
+
+})();
