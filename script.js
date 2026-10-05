@@ -11,11 +11,11 @@
     apistudio: {
       title: 'API Studio',
       platform: 'VS Code Extension & CLI Tool',
-      icon: 'assets/projects/apistudio_icon.png',
+      icon: 'assets/projects/apistudio_icon.webp',
       images: [
-        'assets/projects/apistudio/1.png',
-        'assets/projects/apistudio/2.png',
-        'assets/projects/apistudio/3.png'
+        'assets/projects/apistudio/1.webp',
+        'assets/projects/apistudio/2.webp',
+        'assets/projects/apistudio/3.webp'
       ],
       badge: 'Live · Offline First',
       badgeClass: 'badge-live',
@@ -38,11 +38,11 @@
     forms: {
       title: 'Forms & Frontdoor',
       platform: 'Atlassian Confluence App',
-      icon: 'assets/projects/forms_icon.png',
+      icon: 'assets/projects/forms_icon.webp',
       images: [
-        'assets/projects/forms/1.png',
-        'assets/projects/forms/2.png',
-        'assets/projects/forms/3.png'
+        'assets/projects/forms/1.webp',
+        'assets/projects/forms/2.webp',
+        'assets/projects/forms/3.webp'
       ],
       badge: 'Live · Marketplace',
       badgeClass: 'badge-live',
@@ -65,11 +65,11 @@
     macrotoolkit: {
       title: 'Macro Toolkit',
       platform: 'Atlassian Confluence App',
-      icon: 'assets/projects/macrotoolkit_icon.png',
+      icon: 'assets/projects/macrotoolkit_icon.webp',
       images: [
-        'assets/projects/macrotoolkit/1.png',
-        'assets/projects/macrotoolkit/2.png',
-        'assets/projects/macrotoolkit/3.png'
+        'assets/projects/macrotoolkit/1.webp',
+        'assets/projects/macrotoolkit/2.webp',
+        'assets/projects/macrotoolkit/3.webp'
       ],
       badge: 'Live · 15 Macros',
       badgeClass: 'badge-live',
@@ -92,11 +92,11 @@
     rewardhub: {
       title: 'Recognition Hub',
       platform: 'Confluence & Jira App',
-      icon: 'assets/projects/rewardhub_icon.png',
+      icon: 'assets/projects/rewardhub_icon.webp',
       images: [
-        'assets/projects/rewardhub/1.png',
-        'assets/projects/rewardhub/2.png',
-        'assets/projects/rewardhub/3.png'
+        'assets/projects/rewardhub/1.webp',
+        'assets/projects/rewardhub/2.webp',
+        'assets/projects/rewardhub/3.webp'
       ],
       badge: 'Live · Marketplace',
       badgeClass: 'badge-live',
@@ -119,11 +119,11 @@
     lens: {
       title: 'Lens by Vectored',
       platform: 'Chrome & Edge Extension',
-      icon: 'assets/projects/lens_icon.png',
+      icon: 'assets/projects/lens_icon.webp',
       images: [
-        'assets/projects/lens/1.png',
-        'assets/projects/lens/2.png',
-        'assets/projects/lens/3.png'
+        'assets/projects/lens/1.webp',
+        'assets/projects/lens/2.webp',
+        'assets/projects/lens/3.svg'
       ],
       badge: 'Live · Chrome Store',
       badgeClass: 'badge-live',
@@ -146,11 +146,11 @@
     timesheets: {
       title: 'TimeSheets for Jira',
       platform: 'Atlassian Jira App',
-      icon: 'assets/projects/timesheets_icon.png',
+      icon: 'assets/projects/timesheets_icon.webp',
       images: [
-        'assets/projects/timesheets/1.png',
-        'assets/projects/timesheets/2.png',
-        'assets/projects/timesheets/3.png'
+        'assets/projects/timesheets/1.webp',
+        'assets/projects/timesheets/2.webp',
+        'assets/projects/timesheets/3.webp'
       ],
       badge: 'Coming Soon',
       badgeClass: 'badge-soon',
@@ -172,11 +172,11 @@
     devopshub: {
       title: 'DevOps Hub',
       platform: 'Microsoft Teams Enterprise App',
-      icon: 'assets/images/bt_logo.png',
+      icon: 'assets/images/bt_logo.webp',
       images: [
-        'assets/projects/devopshub/1.png',
-        'assets/projects/devopshub/2.png',
-        'assets/projects/devopshub/3.png'
+        'assets/projects/devopshub/1.webp',
+        'assets/projects/devopshub/2.webp',
+        'assets/projects/devopshub/3.webp'
       ],
       badge: 'Enterprise Production',
       badgeClass: 'badge-live',
