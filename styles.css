@@ -1196,6 +1196,100 @@ section {
   height: 14px;
 }
 
+/* --- Applied AI Case Study --- */
+.case-study-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.case-study-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: all var(--transition-normal);
+}
+
+.case-study-card:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: var(--card-shadow);
+  transform: translateY(-3px);
+}
+
+.case-study-step {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+}
+
+.case-study-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.case-study-card p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.case-study-card code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  background: var(--bg-surface-elevated);
+  overflow-wrap: anywhere;
+}
+
+.case-study-tools {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-top: auto;
+  padding: 0;
+}
+
+.case-study-tools li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.case-study-tools strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--text-main);
+}
+
+.case-study-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+@media (max-width: 1024px) {
+  .case-study-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* --- Career & Professional Experience Section --- */
 .experience-section {
   padding: 5.5rem 0;
