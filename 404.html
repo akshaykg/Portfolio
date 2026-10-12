@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Page not found — KG Akshay Hebbar</title>
+  <!-- GitHub Pages serves this file for any missing path, at that path, so every
+       URL here is absolute. Styles are inline for the same reason. -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/Portfolio/assets/images/favicon-32.png">
+  <link rel="shortcut icon" href="/Portfolio/favicon.ico">
+  <script>
+    // Match the theme the visitor picked on the main site (same key as script.js).
+    (function () {
+      var theme;
+      try { theme = localStorage.getItem('akshay_portfolio_theme'); } catch (e) {}
+      if (!theme) theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg-base: #0a0e17;
+      --bg-surface: #111827;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-medium: rgba(255, 255, 255, 0.15);
+      --accent-cyan: #38bdf8;
+      --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+    }
+    [data-theme="light"] {
+      color-scheme: light;
+      --bg-base: #f8fafc;
+      --bg-surface: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-medium: #cbd5e1;
+      --accent-cyan: #0284c7;
+      --accent-gradient: linear-gradient(135deg, #0284c7 0%, #6366f1 50%, #9333ea 100%);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem 1rem;
+      background: var(--bg-base);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      text-align: center;
+    }
+    main { max-width: 32rem; }
+    .code {
+      margin: 0;
+      font-size: clamp(4rem, 18vw, 7rem);
+      font-weight: 700;
+      line-height: 1;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    h1 { font-size: 1.5rem; margin: 1rem 0 0.5rem; }
+    p { color: var(--text-muted); line-height: 1.6; margin: 0 0 1.75rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+    a.btn {
+      display: inline-block;
+      padding: 0.7rem 1.25rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border-medium);
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 600;
+      background: var(--bg-surface);
+    }
+    a.btn-primary { background: var(--accent-cyan); border-color: var(--accent-cyan); color: var(--bg-base); }
+    a.btn:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="code" aria-hidden="true">404</p>
+    <h1>This page doesn’t exist</h1>
+    <p>The link may be outdated. Everything lives on the main portfolio page, and the resume is one click away.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/Portfolio/">Go to the portfolio</a>
+      <a class="btn" href="/Portfolio/assets/KG_Akshay_Hebbar_Resume.pdf">Download resume</a>
+      <a class="btn" href="/Portfolio/#contact">Contact</a>
+    </div>
+  </main>
+</body>
+</html>

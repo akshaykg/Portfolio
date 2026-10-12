@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://akshaykg.github.io/Portfolio/sitemap.xml
